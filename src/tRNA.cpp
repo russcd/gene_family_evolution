@@ -1,3 +1,12 @@
+/*
+ 
+Need to rework a little for memmory efficiency
+ >can stop storing knockout, just draw on the fly during fitness calcs
+ >store all of the tRNAs w/ pointers and/or ints pointing towards vector positions
+    > create tRNAs with an additional non-functional version one up on the list/vector
+ 
+*/
+
 /// standard headers
 #include <string>
 #include <string.h>
@@ -25,7 +34,7 @@ const gsl_rng *rng ;
 #include "mutate.h"
 #include "fitness.h"
 #include "reproduce.h" 
-#include "stats.h" 
+#include "stats.h"
 
 /// main 
 int main ( int argc, char **argv ) {
@@ -38,9 +47,6 @@ int main ( int argc, char **argv ) {
     rng = gsl_rng_alloc( gsl_rng_taus2 ) ;
     gsl_rng_set( rng, (long) options.seed ) ;
     
-    /// keep track of how many tRNAs exist
-    int total_unique_loci = 1 ;
-    
     // create population of size n with two tRNAs of equivalent function
     gene blank ;
     blank.locus = 0 ;
@@ -50,13 +56,15 @@ int main ( int argc, char **argv ) {
     individual ind_blank ;
     ind_blank.trnas.push_back(blank) ;
     vector<individual> population ( options.n, ind_blank ) ;
-    vector<individual> new_population ( options.n, ind_blank ) ;
     
     // fitness vector
     double fitness [options.n] ;
     
     // evolve the population forward in time
     for ( int g = 1 ; g < options.generations ; g ++ ) {
+        
+        /// vector to swap with
+        vector<individual> new_population ( options.n ) ;
         
         /// somatic and germline mutations
         mutate( population, options ) ;

@@ -73,11 +73,7 @@ void reproduce( const double *fitness, vector<individual> &population, vector<in
                 it2 ++ ;
             }
         }
-        
-//        cout << population[dad].trnas.size() << "\t" ;
-//        cout << population[mom].trnas.size() << "\t" ;
-//        cout << new_ind.trnas.size() << endl ;
-//        
+           
         swap( new_population[i], new_ind ) ;
     }
 }

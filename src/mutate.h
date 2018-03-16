@@ -40,18 +40,6 @@ void mutate( vector<individual> &population, cmd_line &options ) {
             }
         }
     }
-    
-    // add somatic mutations and reset those that are not 
-    for ( int i = 0 ; i < population.size() ; i ++ ) {
-        for ( int g = 0 ; g < population[i].trnas.size() ; g ++ ) {
-            if ( gsl_ran_bernoulli( rng, population[i].trnas[g].somatic ) ) {
-                population[i].trnas[g].knockout = 0 ;
-            }
-            else {
-                population[i].trnas[g].knockout = 1 ;
-            }
-        }
-    }
 }
 
 #endif

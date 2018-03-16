@@ -3,11 +3,11 @@
 
 void print_stats ( double fitness[], const vector<individual> &population, int g ) {
     
-    double trna_count = 0 ;
-    double trna_pseudogenes = 0 ;
-    double mean_fitness = 0 ;
+    float trna_count = 0 ;
+    float trna_pseudogenes = 0 ;
+    float mean_fitness = 0 ;
     
-    map<double,double> loci_counts ;
+    map<float,float> loci_counts ;
     
     for ( int i = 0 ; i < population.size() ; i ++ ) {
         
@@ -30,7 +30,7 @@ void print_stats ( double fitness[], const vector<individual> &population, int g
     cout << mean_fitness/population.size() << "\t" ;
     cout << loci_counts.size() ;
     
-    for ( map<double,double>::iterator it = loci_counts.begin() ; it != loci_counts.end() ; ++it ) {
+    for ( map<float,float>::iterator it = loci_counts.begin() ; it != loci_counts.end() ; ++it ) {
         cout << "\t" << it->first << "\t" << it->second/population.size() ;
     }
     cout << endl ;

@@ -9,7 +9,7 @@ void compute_fitness( double fitness[], vector<individual> &population, cmd_line
         double total_function = 0 ;
         
         for ( int g = 0 ; g < population[i].trnas.size() ; g ++ ) {
-            total_function += population[i].trnas[g].function * population[i].trnas[g].knockout ;
+            total_function += population[i].trnas[g].function * gsl_ran_bernoulli( rng, 1 - population[i].trnas[g].somatic )  ;
         }
                 
         /// simple fitness function for now

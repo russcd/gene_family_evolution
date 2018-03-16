@@ -5,17 +5,14 @@ class gene {
 public:
 
     /// position of the tRNA
-    double locus ;
+    float locus ;
     
     /// function
-    double function ;
+    float function ;
     
     /// u rates per locus
-    double somatic ;
-    double germline ; 
-    
-    /// somatic knockouts
-    int knockout ;
+    float somatic ;
+    float germline ;
     
     // sort function
     bool operator <(const gene &g1 ) {
