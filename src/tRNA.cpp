@@ -82,8 +82,9 @@ int main ( int argc, char **argv ) {
         
         /// swap populations
         swap( population, new_population ) ;
-        
+
+	vector<individual>().swap(new_population) ;
+
     }
-    
     return(0) ;
 }
