@@ -58,6 +58,12 @@ void cmd_line::read_cmd_line ( int argc, char *argv[] ) {
             duplication_rate = atof(argv[++i]) ;
             deletion_rate = duplication_rate ;
         }
+        if ( strcmp(argv[i],"--del") == 0 ) { 
+            deletion_rate = atof(argv[++i]) ;
+        }
+        if ( strcmp(argv[i],"--dup") == 0 ) { 
+            duplication_rate = atof(argv[++i]) ;
+        }
         if ( strcmp(argv[i],"-s") == 0 ) {
             seed = atoi(argv[++i]) ;
         }
