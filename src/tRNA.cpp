@@ -55,6 +55,13 @@ int main ( int argc, char **argv ) {
     blank.germline = options.germline_rate ; 
     individual ind_blank ;
     ind_blank.trnas.push_back(blank) ;
+    
+    /// if there's more htan one at the start, throw it into the array
+    for ( int s = 1 ; s < options.start_count ; s ++ ) {
+        blank.locus = gsl_rng_uniform( rng ) ;
+        ind_blank.trnas.push_back(blank) ;
+    }
+    
     vector<individual> population ( options.n, ind_blank ) ;
     
     // fitness vector
@@ -82,8 +89,6 @@ int main ( int argc, char **argv ) {
         
         /// swap populations
         swap( population, new_population ) ;
-
-	vector<individual>().swap(new_population) ;
 
     }
     return(0) ;

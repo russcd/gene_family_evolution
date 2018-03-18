@@ -32,6 +32,12 @@ void mutate( vector<individual> &population, cmd_line &options ) {
                 /// pick a new location at random
                 new_gene.locus = gsl_rng_uniform( rng ) ;
                 
+                if ( options.variable == true ) {
+                    new_gene.function = gsl_rng_uniform( rng ) ;
+                    new_gene.somatic = new_gene.function/population[i].trnas[g].function*population[i].trnas[g].somatic ;
+                    new_gene.germline = new_gene.function/population[i].trnas[g].function*population[i].trnas[g].germline ;
+                }
+                
                 /// store it
                 population[i].trnas.push_back( new_gene ) ;
                 

@@ -13,7 +13,7 @@ void compute_fitness( double fitness[], vector<individual> &population, cmd_line
         }
                 
         /// simple fitness function for now
-        if ( total_function >= 0.9999 ) {
+        if ( total_function >= options.min_function ) {
             fitness[ i ] = 1 ;
         }
         else {

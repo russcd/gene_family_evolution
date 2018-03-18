@@ -11,6 +11,12 @@ public:
     /// number of generations
     int generations ;
     
+    /// number of genes at start
+    int start_count ;
+    
+    /// amount of function for any fitness
+    double min_function ;
+    
     /// mutation rates
     double germline_rate ;
     double somatic_rate ;
@@ -25,6 +31,10 @@ public:
     /// read relevant information
     void read_cmd_line ( int argc, char *argv[] ) ;
     
+    /// variable mutation/transcription rates
+    /// for now, we'll assume these are correlated 
+    bool variable ;
+    
 } ;
 
 void cmd_line::read_cmd_line ( int argc, char *argv[] ) {
@@ -37,6 +47,9 @@ void cmd_line::read_cmd_line ( int argc, char *argv[] ) {
     deletion_rate = 1e-5 ;
     duplication_rate = 1e-5 ;
     seed = time(NULL) ;
+    min_function = 1 ;
+    start_count = 1 ; 
+    variable = false ;
     
     /// accept command line parameters
     for (int i=1; i<argc; i++) {
@@ -66,6 +79,15 @@ void cmd_line::read_cmd_line ( int argc, char *argv[] ) {
         }
         if ( strcmp(argv[i],"-s") == 0 ) {
             seed = atoi(argv[++i]) ;
+        }
+        if ( strcmp(argv[i],"--start") == 0 ) {
+            start_count = atoi(argv[++i]) ;
+        }
+        if ( strcmp(argv[i],"--min-function") == 0 ) {
+            min_function = atoi(argv[++i]) ;
+        }
+        if ( strcmp(argv[i],"-v") == 0 ) {
+            variable = true ;
         }
     }
     
